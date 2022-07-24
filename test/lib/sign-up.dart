@@ -10,6 +10,8 @@ import 'package:test/camera.services.dart';
 import 'package:test/locator.dart';
 import 'package:test/camera_header.dart';
 import 'package:test/FacePainter.dart';
+import 'package:image_picker/image_picker.dart';
+
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -196,11 +198,32 @@ class SignUpState extends State<SignUp> {
         children: [
           body,
           CameraHeader(
-            "take a photo",
+            "face detector",
             onBackPressed: _onBackPressed,
           )
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {},
+        child: Icon(Icons.camera, color: Colors.white, size: 29,),
+        backgroundColor: Colors.black,
+        tooltip: 'Capture Picture',
+        elevation: 5,
+        splashColor: Colors.grey,
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+File? imageFile;
+
+  void getImage({required ImageSource source}) async {
+    final file = await ImagePicker().pickImage(source: source);
+
+    if (file?.path != null) {
+      setState(() {
+        imageFile = File(file!.path);
+      });
+    }
   }
 }

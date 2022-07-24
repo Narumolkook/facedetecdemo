@@ -17,29 +17,34 @@ class MLService {
   List get predictedData => _predictedData;
 
   Future initialize() async {
-    late Delegate delegate;
+    // late Delegate delegate;
     try {
-      if (Platform.isAndroid) {
-        delegate = GpuDelegateV2(
-          options: GpuDelegateOptionsV2(
-            isPrecisionLossAllowed: false,
-            inferencePreference: TfLiteGpuInferenceUsage.fastSingleAnswer,
-            inferencePriority1: TfLiteGpuInferencePriority.minLatency,
-            inferencePriority2: TfLiteGpuInferencePriority.auto,
-            inferencePriority3: TfLiteGpuInferencePriority.auto,
-          ),
-        );
-      } else if (Platform.isIOS) {
-        delegate = GpuDelegate(
-          options: GpuDelegateOptions(
-              allowPrecisionLoss: true,
-              waitType: TFLGpuDelegateWaitType.active),
-        );
-      }
-      var interpreterOptions = InterpreterOptions()..addDelegate(delegate);
-
-      this._interpreter = await Interpreter.fromAsset('model.tflite',
+      var interpreterOptions = InterpreterOptions()..useNnApiForAndroid = true;
+      final interpreter = await Interpreter.fromAsset('model.tflite',
           options: interpreterOptions);
+
+      // if (Platform.isAndroid) {
+      //   delegate = GpuDelegateV2(
+      //     options: GpuDelegateOptionsV2(
+      //       isPrecisionLossAllowed: false,
+      //       inferencePreference: TfLiteGpuInferenceUsage.fastSingleAnswer,
+      //       inferencePriority1: TfLiteGpuInferencePriority.minLatency,
+      //       inferencePriority2: TfLiteGpuInferencePriority.auto,
+      //       inferencePriority3: TfLiteGpuInferencePriority.auto,
+      //     ),
+      //   );
+      // } else if (Platform.isIOS) {
+      //   delegate = GpuDelegate(
+      //     options: GpuDelegateOptions(
+      //         allowPrecisionLoss: true,
+      //         waitType: TFLGpuDelegateWaitType.active),
+      //   );
+      // }
+      // var interpreterOptions = InterpreterOptions()..addDelegate(delegate);
+
+      // this._interpreter = await Interpreter.fromAsset('model.tflite',
+      //     options: interpreterOptions);
+
     } catch (e) {
       print('Failed to load model.');
       print(e);
@@ -74,16 +79,16 @@ class MLService {
 
   imglib.Image _cropFace(CameraImage image, Face faceDetected) {
     imglib.Image convertedImage = _convertCameraImage(image);
-    double x = faceDetected.boundingBox.left - 30.0;
-    double y = faceDetected.boundingBox.top - 30.0;
-    double w = faceDetected.boundingBox.width + 30.0;
-    double h = faceDetected.boundingBox.height + 30.0;
+    double x = faceDetected.boundingBox.left;
+    double y = faceDetected.boundingBox.top;
+    double w = faceDetected.boundingBox.width;
+    double h = faceDetected.boundingBox.height;
     return imglib.copyCrop(
         convertedImage, x.round(), y.round(), w.round(), h.round());
   }
 
   imglib.Image _convertCameraImage(CameraImage image) {
-    var img = convertToImage(image);  //image_con
+    var img = convertToImage(image); //image_con
     var img1 = imglib.copyRotate(img, -90);
     return img1;
   }
@@ -122,15 +127,15 @@ class MLService {
   //   return predictedResult;
   // }
 
-  double _euclideanDistance(List? e1, List? e2) {
-    if (e1 == null || e2 == null) throw Exception("Null argument");
+  // double _euclideanDistance(List? e1, List? e2) {
+  //   if (e1 == null || e2 == null) throw Exception("Null argument");
 
-    double sum = 0.0;
-    for (int i = 0; i < e1.length; i++) {
-      sum += pow((e1[i] - e2[i]), 2);
-    }
-    return sqrt(sum);
-  }
+  //   double sum = 0.0;
+  //   for (int i = 0; i < e1.length; i++) {
+  //     sum += pow((e1[i] - e2[i]), 2);
+  //   }
+  //   return sqrt(sum);
+  // }
 
   void setPredictedData(value) {
     this._predictedData = value;

@@ -49,10 +49,11 @@ RRect _scaleRect(
     required Size widgetSize,
     double scaleX = 1,
     double scaleY = 1}) {
+      // LTRBR(ซ้าย, บน, ขวา, ล่าง)
   return RRect.fromLTRBR(
-      (widgetSize.width - rect.left.toDouble() * scaleX),
-      rect.top.toDouble() * scaleY,
-      widgetSize.width - rect.right.toDouble() * scaleX,
-      rect.bottom.toDouble() * scaleY,
+      (rect.left.toDouble() * scaleX ),
+      (widgetSize.height - rect.top.toDouble() * scaleY),
+      (widgetSize.height + rect.right.toDouble() * scaleX),
+      (widgetSize.width - rect.bottom.toDouble() * scaleY),
       Radius.circular(10));
 }

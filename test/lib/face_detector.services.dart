@@ -33,8 +33,7 @@ class FaceDetectorService {
       imageRotation:
           _cameraService.cameraRotation ?? InputImageRotation.Rotation_0deg,
       inputImageFormat:
-          InputImageFormatMethods.fromRawValue(image.format.raw) ??
-              InputImageFormat.NV21,
+          InputImageFormatMethods.fromRawValue(image.format.raw) ?? InputImageFormat.NV21,
       size: Size(image.width.toDouble(), image.height.toDouble()),
       planeData: image.planes.map(
         (Plane plane) {

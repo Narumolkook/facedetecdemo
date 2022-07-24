@@ -47,8 +47,8 @@ RRect _scaleRect(
     {required Rect rect,
     required Size imageSize,
     required Size widgetSize,
-    double scaleX = 1,
-    double scaleY = 1}) {
+    double scaleX = 10,
+    double scaleY = 10}) {
       // LTRBR(ซ้าย, บน, ขวา, ล่าง)
   return RRect.fromLTRBR(
       (rect.left.toDouble() * scaleX ),

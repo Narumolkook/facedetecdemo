@@ -10,7 +10,7 @@ import 'package:test/camera.services.dart';
 import 'package:test/locator.dart';
 import 'package:test/camera_header.dart';
 import 'package:test/FacePainter.dart';
-import 'package:image_picker/image_picker.dart';
+
 
 
 class SignUp extends StatefulWidget {
@@ -68,15 +68,14 @@ class SignUpState extends State<SignUp> {
           );
         },
       );
-
       return false;
     } else {
       _saving = true;
-      await Future.delayed(Duration(milliseconds: 500));
       // await _cameraService.cameraController?.stopImageStream();
       await Future.delayed(Duration(milliseconds: 200));
       XFile? file = await _cameraService.takePicture();
       imagePath = file?.path;
+      
 
       setState(() {
         _bottomSheetVisible = true;
@@ -204,7 +203,7 @@ class SignUpState extends State<SignUp> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: onShot,
         child: Icon(Icons.camera, color: Colors.white, size: 29,),
         backgroundColor: Colors.black,
         tooltip: 'Capture Picture',
@@ -215,15 +214,4 @@ class SignUpState extends State<SignUp> {
     );
   }
 
-File? imageFile;
-
-  void getImage({required ImageSource source}) async {
-    final file = await ImagePicker().pickImage(source: source);
-
-    if (file?.path != null) {
-      setState(() {
-        imageFile = File(file!.path);
-      });
-    }
-  }
 }

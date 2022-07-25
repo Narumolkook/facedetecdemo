@@ -2,19 +2,18 @@ import 'dart:io';
 import 'dart:math';
 import 'dart:typed_data';
 import 'package:camera/camera.dart';
-// import 'package:face_net_authentication/pages/db/databse_helper.dart';
-// import 'package:face_net_authentication/pages/models/user.model.dart';
 import 'package:test/image_converter.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:tflite_flutter/tflite_flutter.dart';
 import 'package:image/image.dart' as imglib;
+import 'package:path_provider/path_provider.dart';
 
 class MLService {
   Interpreter? _interpreter;
   double threshold = 0.5;
 
-  List _predictedData = [];
-  List get predictedData => _predictedData;
+  // List _predictedData = [];
+  // List get predictedData => _predictedData;
 
   Future initialize() async {
     // late Delegate delegate;
@@ -62,12 +61,11 @@ class MLService {
     this._interpreter?.run(input, output);
     output = output.reshape([192]);
 
-    this._predictedData = List.from(output);
-  }
+    // print(input.runtimeType);
 
-  // Future<User?> predict() async {
-  //   return _searchResult(this._predictedData);
-  // }
+    // this._predictedData = List.from(output);
+    
+  }
 
   List _preProcess(CameraImage image, Face faceDetected) {
     imglib.Image croppedImage = _cropFace(image, faceDetected);
@@ -109,37 +107,28 @@ class MLService {
     return convertedBytes.buffer.asFloat32List();
   }
 
-  // Future<User?> _searchResult(List predictedData) async {
-  //   DatabaseHelper _dbHelper = DatabaseHelper.instance;
-
-  //   List<User> users = await _dbHelper.queryAllUsers();
-  //   double minDist = 999;
-  //   double currDist = 0.0;
-  //   User? predictedResult;
-
-  //   for (User u in users) {
-  //     currDist = _euclideanDistance(u.modelData, predictedData);
-  //     if (currDist <= threshold && currDist < minDist) {
-  //       minDist = currDist;
-  //       predictedResult = u;
-  //     }
-  //   }
-  //   return predictedResult;
+  // void setPredictedData(value) {
+  //   this._predictedData = value;
   // }
+//   Future<String> getFilePath() async {
+//     Directory appDocumentsDirectory = await getApplicationDocumentsDirectory(); // 1
+//     String appDocumentsPath = appDocumentsDirectory.path; // 2
+//     String filePath = '$appDocumentsPath/demoTextFile.txt'; // 3
 
-  // double _euclideanDistance(List? e1, List? e2) {
-  //   if (e1 == null || e2 == null) throw Exception("Null argument");
+//     return filePath;
+//   }
 
-  //   double sum = 0.0;
-  //   for (int i = 0; i < e1.length; i++) {
-  //     sum += pow((e1[i] - e2[i]), 2);
-  //   }
-  //   return sqrt(sum);
-  // }
+//   void saveFile() async {
+//     File file = File(await getFilePath()); // 1
+//     file.writeAsString("This is my demo text that will be saved to : demoTextFile.txt"); // 2
+//   }
 
-  void setPredictedData(value) {
-    this._predictedData = value;
-  }
+//   void readFile() async {
+//     File file = File(await getFilePath()); // 1
+//     String fileContent = await file.readAsString(); // 2
+
+//     print('File Content: $fileContent');
+// }
 
   dispose() {}
 }

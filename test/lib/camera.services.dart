@@ -34,7 +34,7 @@ class CameraService {
   }) async {
     this._cameraController = CameraController(
       description,
-      ResolutionPreset.high,
+      ResolutionPreset.medium,
       enableAudio: false,
     );
     await _cameraController?.initialize();
@@ -70,7 +70,6 @@ class CameraService {
       _cameraController!.value.previewSize!.width,
     );
   }
-
   dispose() async {
     await this._cameraController?.dispose();
     this._cameraController = null;

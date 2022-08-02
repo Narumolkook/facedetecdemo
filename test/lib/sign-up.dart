@@ -5,13 +5,12 @@ import 'package:camera/camera.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:test/face_detector.services.dart';
-import 'package:test/ml_services.dart';
+// import 'package:test/ml_services.dart';
 import 'package:test/camera.services.dart';
 import 'package:test/locator.dart';
 import 'package:test/camera_header.dart';
 import 'package:test/FacePainter.dart';
-
-
+import 'package:gallery_saver/gallery_saver.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -36,7 +35,7 @@ class SignUpState extends State<SignUp> {
   // service injection
   FaceDetectorService _faceDetectorService = locator<FaceDetectorService>();
   CameraService _cameraService = locator<CameraService>();
-  MLService _mlService = locator<MLService>();
+  // MLService _mlService = locator<MLService>();
 
   @override
   void initState() {
@@ -72,10 +71,13 @@ class SignUpState extends State<SignUp> {
     } else {
       _saving = true;
       // await _cameraService.cameraController?.stopImageStream();
-      await Future.delayed(Duration(milliseconds: 200));
+      // await Future.delayed(Duration(milliseconds: 200));
       XFile? file = await _cameraService.takePicture();
       imagePath = file?.path;
+      GallerySaver.saveImage(imagePath!);
       
+      
+      // GallerySaver.saveImage(imagePath.path).then((String path);
 
       setState(() {
         _bottomSheetVisible = true;
@@ -102,12 +104,12 @@ class SignUpState extends State<SignUp> {
             setState(() {
               faceDetected = _faceDetectorService.faces[0];
             });
-            if (_saving) {
-              _mlService.setCurrentPrediction(image, faceDetected);
-              setState(() {
-                _saving = false;
-              });
-            }
+            // if (_saving) {
+            //   _mlService.setCurrentPrediction(image, faceDetected);
+            //   setState(() {
+            //     _saving = false;
+            //   });
+            // }
           } else {
             setState(() {
               faceDetected = null;
@@ -155,11 +157,14 @@ class SignUpState extends State<SignUp> {
         child: Transform(
             alignment: Alignment.center,
             child: FittedBox(
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
               child: Image.file(File(imagePath!)),
             ),
             transform: Matrix4.rotationY(mirror)),
       );
+      print(
+          "IMAGE PATH --------------------------------------------------------------------------------------------");
+      print(imagePath);
     }
 
     if (!_initializing && !pictureTaken) {
@@ -190,6 +195,9 @@ class SignUpState extends State<SignUp> {
           ),
         ),
       );
+      print(
+          "================================================================================================================================================");
+      print(imageSize);
     }
 
     return Scaffold(
@@ -204,7 +212,11 @@ class SignUpState extends State<SignUp> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: onShot,
-        child: Icon(Icons.camera, color: Colors.white, size: 29,),
+        child: Icon(
+          Icons.camera,
+          color: Colors.white,
+          size: 29,
+        ),
         backgroundColor: Colors.black,
         tooltip: 'Capture Picture',
         elevation: 5,
@@ -213,5 +225,4 @@ class SignUpState extends State<SignUp> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
-
 }

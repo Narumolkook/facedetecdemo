@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:test/face_detector.services.dart';
-import 'package:test/ml_services.dart';
+// import 'package:test/ml_services.dart';
 import 'package:test/camera.services.dart';
 import 'package:test/locator.dart';
 import 'package:test/sign-up.dart';
@@ -13,7 +12,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  MLService _mlService = locator<MLService>();
+  // MLService _mlService = locator<MLService>();
   FaceDetectorService _mlKitService = locator<FaceDetectorService>();
   CameraService _cameraService = locator<CameraService>();
   bool loading = false;
@@ -27,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
   _initializeServices() async {
     setState(() => loading = true);
     await _cameraService.initialize();
-    await _mlService.initialize();
+    // await _mlService.initialize();
     _mlKitService.initialize();
     setState(() => loading = false);
   }

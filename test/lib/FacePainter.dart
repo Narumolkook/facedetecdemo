@@ -27,26 +27,38 @@ class FacePainter extends CustomPainter {
     scaleX = size.width / imageSize.width;
     scaleY = size.height / imageSize.height;
 
+    print(scaleX);
+    print(scaleY);
+    print(size.width);
+    print(size.height);
+    print(imageSize.width);
+    print(imageSize.height);
+
     canvas.drawRRect(
         _scaleRect(
             rect: face!.boundingBox,
             imageSize: imageSize,
-            widgetSize: size,
+            // widgetSize: size,
             scaleX: scaleX ?? 1,
             scaleY: scaleY ?? 1),
         paint);
+        print("---------------------------------------------------------------------------------------------------------------------------------------");
+        print(_scaleRect(rect: face!.boundingBox, imageSize: imageSize));
+        
+        
   }
 
   @override
   bool shouldRepaint(FacePainter oldDelegate) {
     return oldDelegate.imageSize != imageSize || oldDelegate.face != face;
   }
+  
 }
 
 RRect _scaleRect(
     {required Rect rect,
     required Size imageSize,
-    required Size widgetSize,
+    // required Size widgetSize,
     double scaleX = 1,
     double scaleY = 1
     }) {
@@ -60,5 +72,8 @@ RRect _scaleRect(
       // (rect.top.toDouble() * scaleY),
       // (rect.right.toDouble() * scaleX ),
       // (rect.bottom.toDouble() * scaleX),
-      Radius.circular(10));
+      Radius.circular(10)
+      
+      );
+    
 }

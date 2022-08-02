@@ -56,6 +56,7 @@ class MLService {
     List input = _preProcess(cameraImage, face);
 
     input = input.reshape([1, 112, 112, 3]);
+    
     List output = List.generate(1, (index) => List.filled(192, 0));
 
     this._interpreter?.run(input, output);
@@ -64,8 +65,9 @@ class MLService {
     // print(input.runtimeType);
 
     // this._predictedData = List.from(output);
-    
   }
+
+  
 
   List _preProcess(CameraImage image, Face faceDetected) {
     imglib.Image croppedImage = _cropFace(image, faceDetected);
@@ -106,6 +108,8 @@ class MLService {
     }
     return convertedBytes.buffer.asFloat32List();
   }
+
+  
 
   // void setPredictedData(value) {
   //   this._predictedData = value;

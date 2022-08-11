@@ -156,15 +156,18 @@ class SignUpState extends State<SignUp> {
         height: height,
         child: Transform(
             alignment: Alignment.center,
+            transform: Matrix4.rotationY(mirror),
             child: FittedBox(
-              fit: BoxFit.fitHeight,
+              fit: BoxFit.cover,
               child: Image.file(File(imagePath!)),
             ),
-            transform: Matrix4.rotationY(mirror)),
+            ),
       );
       print(
           "IMAGE PATH --------------------------------------------------------------------------------------------");
       print(imagePath);
+      print(width);
+      print(height);
     }
 
     if (!_initializing && !pictureTaken) {

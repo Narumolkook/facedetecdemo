@@ -42,8 +42,9 @@ dependencies:
   image: ^3.0.2
   font_awesome_flutter: ^9.0.0
   get_it: ^7.2.0
-  image_picker: ^0.8.4+4
+  http: ^0.13.4
   gallery_saver: ^2.3.2
+  postgres: ^2.4.6
 
 dev_dependencies:
   flutter_test:

@@ -11,6 +11,7 @@ import 'package:test/locator.dart';
 import 'package:test/camera_header.dart';
 import 'package:test/FacePainter.dart';
 import 'package:gallery_saver/gallery_saver.dart';
+import 'package:test/pictureScreen.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -73,10 +74,18 @@ class SignUpState extends State<SignUp> {
       // await _cameraService.cameraController?.stopImageStream();
       // await Future.delayed(Duration(milliseconds: 200));
       XFile? file = await _cameraService.takePicture();
-      imagePath = file?.path;
+      // imagePath = file?.path;
+      // GallerySaver.saveImage(imagePath!);
+      await Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => DisplayPictureScreen(
+                  // Pass the automatically generated path to
+                  // the DisplayPictureScreen widget.
+                  imagePath: file!.path,
+                ),
+              ),
+            );
       GallerySaver.saveImage(imagePath!);
-      
-      
       // GallerySaver.saveImage(imagePath.path).then((String path);
 
       setState(() {
@@ -150,25 +159,27 @@ class SignUpState extends State<SignUp> {
       );
     }
 
-    if (!_initializing && pictureTaken) {
-      body = Container(
-        width: width,
-        height: height,
-        child: Transform(
-            alignment: Alignment.center,
-            transform: Matrix4.rotationY(mirror),
-            child: FittedBox(
-              fit: BoxFit.cover,
-              child: Image.file(File(imagePath!)),
-            ),
-            ),
-      );
-      print(
-          "IMAGE PATH --------------------------------------------------------------------------------------------");
-      print(imagePath);
-      print(width);
-      print(height);
-    }
+    // if (!_initializing && pictureTaken) {
+      // body = Center(
+      //   child: Container(
+      //     width: 480,
+      //     height: 720,
+      //     child: Transform(
+      //         alignment: Alignment.center,
+      //         transform: Matrix4.rotationY(mirror),
+      //         child: FittedBox(
+      //           fit: BoxFit.cover,
+      //           child: Image.file(File(imagePath!)),
+      //         ),
+      //         ),
+      //   ),
+      // );
+    //   print(
+    //       "IMAGE PATH --------------------------------------------------------------------------------------------");
+    //   print(imagePath);
+    //   print(width);
+    //   print(height);
+    // }
 
     if (!_initializing && !pictureTaken) {
       body = Transform.scale(

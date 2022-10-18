@@ -1,10 +1,8 @@
-import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:math' as math;
-// import 'package:gallery_saver/gallery_saver.dart';
-
-import 'package:test/sign-up.dart';
-import 'package:test/api.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:flutter/material.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
   final String imagePath;
@@ -14,93 +12,87 @@ class DisplayPictureScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: const Text('Display the Picture')),
+      appBar: AppBar(title: const Text('Display the Picture')),
       // The image is stored as a file on the device. Use the `Image.file`
       // constructor with the given path to display the image.
-      // body: Center(
-      //   child: Container(
-      //     width: 480,
-      //     height: 720,
-      //     child: Transform(
-      //       alignment: Alignment.center,
-      //       transform: Matrix4.rotationY(math.pi),
-      //       child: FittedBox(
-      //         fit: BoxFit.cover,
-      //         child: Image.file(File(imagePath)),
-      //       ),
-      //     ),
-      //     padding: const EdgeInsets.all(10),
-      //   ),
-
-      // ),
-
-      // floatingActionButton: FloatingActionButton(onPressed: () {
-      //       Navigator.push(
-      //         context,
-      //         MaterialPageRoute(builder: (context) => const SignUp()),
-      //       );
-      //     },
-      // tooltip: 'picture',
-      // child: const Text('back'),
-      // ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-
-      
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: Container(
-              width: 480,
-              height: 720,
-              child: Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.rotationY(math.pi),
-                child: FittedBox(
-                  fit: BoxFit.cover,
-                  child: Image.file(File(imagePath)),
-                ),
-              ),
-            ),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const SignUp()),
-                    );
-                  },
-                  child:
-                      const Text('Try Again', style: TextStyle(fontSize: 18)),
-                ),
-              ),
-              const SizedBox(
-                width: 20,
-              ),
-              Expanded(
-                  child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const ApiService()),
+      body: Center(
+        child: FutureBuilder<Data>(
+            future: postimage(imagePath, imagePath),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.done) {
+                if (snapshot.hasData) {
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Image.file(File(imagePath)),
+                      SizedBox(
+                        height: 50,
+                      ),
+                      Text(snapshot.data!.score),
+                    ],
                   );
-                },
-                child: const Text(
-                  'Next',
-                  style: TextStyle(fontSize: 18)
-                  ,
-                ),
-              ))
-            ],
-          )
-        ],
+                } else if (snapshot.hasError) {
+                  return Text('${snapshot.error}');
+                }
+              }
+              return const CircularProgressIndicator();
+            }),
       ),
     );
   }
+}
+
+Future<Data> postimage(String path1, String path2) async {
+  //call vam api
+  //กำหนดไฟล์ที่จะอัปโหลด
+  //สร้าง [MultipartFile] ใหม่จากพาธไปยังไฟล์บนดิสก์
+  var fileA = await http.MultipartFile.fromPath(
+    'ImageA', //ตัวแปรที่ api req
+    path1, // path ภาพ
+  );
+  var fileB = await http.MultipartFile.fromPath(
+    'ImageB', //ตัวแปรที่ api req
+    path2, // path ภาพ
+  );
+  print("---- fileA and fileB ----");
+  print(fileA);
+  print(fileB);
+
+  //กำหนด url ของ api
+  final uri = Uri.parse('http://58.137.58.164:8500/CompareFace');
+  var request = http.MultipartRequest('POST', uri);
+
+  print("---- request ----");
+  print(request);
+  request.files.add(fileA);
+  request.files.add(fileB);
+
+  var response = await request.send();
+  var responseString = await response.stream.bytesToString();
+
+  print("_____________API response_____________");
+
+  if (response.statusCode == 200) {
+    print('Uploaded!');
+    // response.stream.transform(utf8.decoder).listen((value) {
+    //   debugPrint(value);
+    // });
+    return Data.fromJson(jsonDecode(responseString));
+  } else {
+    throw Exception('Failed to upload.');
+  }
+}
+
+class Data {
+  final bool success;
+  final String score;
+  Data({
+    required this.success,
+    required this.score,
+  });
+  factory Data.fromJson(Map<String, dynamic> json) =>
+      Data(
+        success: json['success'], 
+        score: json['score'].toString()
+        );
 }

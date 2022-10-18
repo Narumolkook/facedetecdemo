@@ -21,6 +21,7 @@ class FacePainter extends CustomPainter {
         ..style = PaintingStyle.stroke
         ..strokeWidth = 5.0
         ..color = Colors.green;
+        
     }
 
     Offset center = Offset(size.width/2, size.height/2);

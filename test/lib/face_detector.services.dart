@@ -17,7 +17,8 @@ class FaceDetectorService {
   void initialize() {
     _faceDetector = GoogleMlKit.vision.faceDetector(
       FaceDetectorOptions(
-        mode: FaceDetectorMode.accurate,
+        mode: FaceDetectorMode.fast,
+        enableLandmarks: true,
       ),
     );
 

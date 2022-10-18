@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:math' as math;
+import 'package:image/image.dart' as IMG;
 import 'package:camera/camera.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ import 'package:test/camera.services.dart';
 import 'package:test/locator.dart';
 import 'package:test/camera_header.dart';
 import 'package:test/FacePainter.dart';
-import 'package:gallery_saver/gallery_saver.dart';
+
 import 'package:test/pictureScreen.dart';
 
 class SignUp extends StatefulWidget {
@@ -73,19 +74,26 @@ class SignUpState extends State<SignUp> {
       _saving = true;
       // await _cameraService.cameraController?.stopImageStream();
       // await Future.delayed(Duration(milliseconds: 200));
-      XFile? file = await _cameraService.takePicture();
+      XFile? image = await _cameraService.takePicture();
       // imagePath = file?.path;
       // GallerySaver.saveImage(imagePath!);
+      var dir = Directory.systemTemp.createTempSync();
+      File temp = File("${dir.path}/cropPath");
+      final File croppedImage =
+          await ImageProcessor.cropSquare(image!.path, temp.path, false)
+              as File;
+
+      
       await Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (context) => DisplayPictureScreen(
-                  // Pass the automatically generated path to
-                  // the DisplayPictureScreen widget.
-                  imagePath: file!.path,
-                ),
-              ),
-            );
-      GallerySaver.saveImage(imagePath!);
+        MaterialPageRoute(
+          builder: (context) => DisplayPictureScreen(
+            // Pass the automatically generated path to
+            // the DisplayPictureScreen widget.
+            imagePath: croppedImage.path,
+          ),
+        ),
+      );
+      // GallerySaver.saveImage(imagePath!);
       // GallerySaver.saveImage(imagePath.path).then((String path);
 
       setState(() {
@@ -160,20 +168,20 @@ class SignUpState extends State<SignUp> {
     }
 
     // if (!_initializing && pictureTaken) {
-      // body = Center(
-      //   child: Container(
-      //     width: 480,
-      //     height: 720,
-      //     child: Transform(
-      //         alignment: Alignment.center,
-      //         transform: Matrix4.rotationY(mirror),
-      //         child: FittedBox(
-      //           fit: BoxFit.cover,
-      //           child: Image.file(File(imagePath!)),
-      //         ),
-      //         ),
-      //   ),
-      // );
+    // body = Center(
+    //   child: Container(
+    //     width: 480,
+    //     height: 720,
+    //     child: Transform(
+    //         alignment: Alignment.center,
+    //         transform: Matrix4.rotationY(mirror),
+    //         child: FittedBox(
+    //           fit: BoxFit.cover,
+    //           child: Image.file(File(imagePath!)),
+    //         ),
+    //         ),
+    //   ),
+    // );
     //   print(
     //       "IMAGE PATH --------------------------------------------------------------------------------------------");
     //   print(imagePath);
@@ -238,5 +246,31 @@ class SignUpState extends State<SignUp> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+}
+
+class ImageProcessor {
+  static Future cropSquare(
+      String srcFilePath, String destFilePath, bool flip) async {
+    var bytes = await File(srcFilePath).readAsBytes();
+    IMG.Image src = IMG.decodeImage(bytes) as IMG.Image;
+
+    var cropSize = math.min(src.width, src.height);
+    print(cropSize);
+
+    int offsetX = (src.width - math.min(src.width, src.height)) ~/ 2;
+    int offsetY = (src.height - math.min(src.width, src.height)) ~/ 2;
+    print(offsetX);
+    print(offsetY);
+
+    IMG.Image destImage =
+        IMG.copyCrop(src, offsetX, offsetY, cropSize, cropSize);
+
+    if (flip) {
+      destImage = IMG.flipVertical(destImage);
+    }
+
+    var jpg = IMG.encodeJpg(destImage);
+    return await File(destFilePath).writeAsBytes(jpg);
   }
 }

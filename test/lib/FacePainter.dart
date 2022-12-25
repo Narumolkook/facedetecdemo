@@ -27,22 +27,7 @@ class FacePainter extends CustomPainter {
     Offset center = Offset(size.width/2, size.height/2);
     Rect rect = Rect.fromCenter(center: center, width: size.width/2, height: size.height/2);
     canvas.drawOval(rect, paint);
-
-    // scaleX = size.width / imageSize.width;
-    // scaleY = size.height / imageSize.height;
-
-    // canvas.drawRRect(
-    //     _scaleRect(
-    //         rect: face!.boundingBox,
-    //         imageSize: imageSize,
-    //         // widgetSize: size,
-    //         scaleX: scaleX ?? 1,
-    //         scaleY: scaleY ?? 1),
-    //     paint);
-    //     print("---------------------------------------------------------------------------------------------------------------------------------------");
-    //     print(_scaleRect(rect: face!.boundingBox, imageSize: imageSize));
-        
-        
+ 
   }
 
   @override
@@ -52,25 +37,3 @@ class FacePainter extends CustomPainter {
   
 }
 
-// RRect _scaleRect(
-//     {required Rect rect,
-//     required Size imageSize,
-//     // required Size widgetSize,
-//     double scaleX = 1,
-//     double scaleY = 1
-//     }) {
-//       // LTRBR(ซ้าย, บน, ขวา, ล่าง)
-//   return RRect.fromLTRBR(
-//       (rect.left.toDouble() * scaleX ),
-//       (rect.top.toDouble() * scaleY),
-//       ((rect.right.toDouble() * scaleX) + (rect.left.toDouble() * scaleX)),
-//       ((rect.bottom.toDouble() * scaleX) + (rect.top.toDouble() * scaleX)),
-//       // (rect.left.toDouble() * scaleX),
-//       // (rect.top.toDouble() * scaleY),
-//       // (rect.right.toDouble() * scaleX ),
-//       // (rect.bottom.toDouble() * scaleX),
-//       Radius.circular(10)
-      
-//       );
-    
-// }

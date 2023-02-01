@@ -5,7 +5,6 @@ import 'package:image/image.dart' as IMG;
 import 'package:camera/camera.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:test/cardcamare.dart';
 import 'package:test/face_detector.services.dart';
 // import 'package:test/ml_services.dart';
 import 'package:test/camera.services.dart';
@@ -15,15 +14,17 @@ import 'package:test/FacePainter.dart';
 
 import 'package:test/pictureScreen.dart';
 
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class Cardcam extends StatefulWidget {
+  final String imagePath;
+  const Cardcam({super.key, required this.imagePath});
+
 
   @override
-  SignUpState createState() => SignUpState();
+  CardcamState createState() => CardcamState();
 }
 
-class SignUpState extends State<SignUp> {
-  String? imagePath;
+class CardcamState extends State<Cardcam> {
+  
   Face? faceDetected;
   Size? imageSize;
 
@@ -80,17 +81,18 @@ class SignUpState extends State<SignUp> {
       // GallerySaver.saveImage(imagePath!);
       var dir = Directory.systemTemp.createTempSync();
       File temp = File("${dir.path}/cropPath");
-      final File croppedImage =
+      final File croppedImage2 =
           await ImageProcessor.cropSquare(image!.path, temp.path, false)
               as File;
 
       
       await Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => Cardcam(
+          builder: (context) => DisplayPictureScreen(
             // Pass the automatically generated path to
             // the DisplayPictureScreen widget.
-            imagePath: croppedImage.path,
+            imagePath1: croppedImage2.path,
+            imagePath2: imagePath
           ),
         ),
       );
@@ -228,7 +230,7 @@ class SignUpState extends State<SignUp> {
         children: [
           body,
           CameraHeader(
-            "face detector",
+            "Card detector",
             onBackPressed: _onBackPressed,
           )
         ],

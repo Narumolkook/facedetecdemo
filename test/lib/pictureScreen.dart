@@ -5,9 +5,10 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
+  final String imagePath1;
+  final String imagePath2;
 
-  const DisplayPictureScreen({super.key, required this.imagePath});
+  const DisplayPictureScreen({super.key, required this.imagePath1, required this.imagePath2});
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +18,14 @@ class DisplayPictureScreen extends StatelessWidget {
       // constructor with the given path to display the image.
       body: Center(
         child: FutureBuilder<Data>(
-            future: postimage(imagePath, imagePath),
+            future: postimage(imagePath1, imagePath2),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
                 if (snapshot.hasData) {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Image.file(File(imagePath)),
+                      Image.file(File(imagePath1)),
                       SizedBox(
                         height: 50,
                       ),

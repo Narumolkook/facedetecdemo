@@ -24,7 +24,7 @@ class Cardcam extends StatefulWidget {
 }
 
 class CardcamState extends State<Cardcam> {
-  
+  String? imagePath;
   Face? faceDetected;
   Size? imageSize;
 
@@ -61,6 +61,7 @@ class CardcamState extends State<Cardcam> {
     _frameFaces();
   }
 
+
   Future<bool> onShot() async {
     if (faceDetected == null) {
       showDialog(
@@ -84,6 +85,13 @@ class CardcamState extends State<Cardcam> {
       final File croppedImage2 =
           await ImageProcessor.cropSquare(image!.path, temp.path, false)
               as File;
+
+
+      // var direc = Directory.systemTemp.createTempSync();
+      // File tempp = File("${direc.path}/cropPath");
+      // final File imagePath1=
+      //     await ImageProcessor.cropSquare(imagePath!, tempp.path, false)
+      //         as File;
 
       
       await Navigator.of(context).push(
@@ -210,8 +218,8 @@ class CardcamState extends State<Cardcam> {
                   children: <Widget>[
                     CameraPreview(_cameraService.cameraController!),
                     CustomPaint(
-                      painter: FacePainter(
-                          face: faceDetected, imageSize: imageSize!),
+                      painter: DrawPaint(
+                          ),
                     ),
                   ],
                 ),

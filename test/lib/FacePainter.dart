@@ -37,3 +37,33 @@ class FacePainter extends CustomPainter {
   
 }
 
+class DrawPaint extends CustomPainter {
+  bool? isFilled;
+  DrawPaint({this.isFilled});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    Paint paint = Paint();
+    paint.color = Colors.grey;
+    if (isFilled != null) {
+      paint.style = PaintingStyle.fill;
+    } else {
+      paint.style = PaintingStyle.stroke;
+    }
+    paint.strokeWidth = 3;
+
+
+    //draw id card
+    RRect rRect = RRect.fromLTRBR(63, 220, 320, 410, Radius.circular(10));
+    canvas.drawRRect(rRect, paint);
+     //draw img id card
+    RRect rrect = RRect.fromLTRBR(220, 300, 300, 390, Radius.circular(10));
+    canvas.drawRRect(rrect, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant DrawPaint oldDelegate) {
+    return false;
+  }
+}
+

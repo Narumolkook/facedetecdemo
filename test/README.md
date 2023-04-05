@@ -1,16 +1,15 @@
-# test
+# project II : Face verification though Artificial Intelligence Application
 
-A new Flutter project.
+แอปพลิเคชั่นยืนยันตัวตนผ่านใบหน้าด้วยเทคโนโลยีปัญญาประดิษฐ์
 
-## Getting Started
+# ภาพรวมทั้งหมดของโปรเจ็ค
 
-This project is a starting point for a Flutter application.
+![image (2)](https://user-images.githubusercontent.com/105279093/217842631-bdd4a670-db6d-4b0d-b30b-c3b0c451c9ca.png)
 
-A few resources to get you started if this is your first Flutter project:
+# ส่วนที่ทำในโปรเจ็ค1
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![image (3)](https://user-images.githubusercontent.com/105279093/217842901-fed65887-7724-4f83-9be8-cf8f9dd6f697.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# ส่วนที่ต้องทำต่อในโปรเจ็ค2
+
+![image (4)](https://user-images.githubusercontent.com/105279093/217842959-c59c1e23-b218-4faf-882a-b4dd1f5ee4ad.png)

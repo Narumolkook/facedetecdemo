@@ -87,7 +87,8 @@ class SignUpState extends State<SignUp> {
       
       await Navigator.of(context).push(
         MaterialPageRoute(
-          builder: (context) => Cardcam(
+          // builder: (context) => Cardcam(
+          builder: (context) => DisplayPictureScreen(
             // Pass the automatically generated path to
             // the DisplayPictureScreen widget.
             imagePath: croppedImage.path,

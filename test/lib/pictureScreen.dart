@@ -3,46 +3,66 @@ import 'dart:math' as math;
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
+import 'package:test/home.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
-  //final String imagePath;
   final String imagePath1;
   final String imagePath2;
 
-
-  // const DisplayPictureScreen({super.key, required this.imagePath});
-  const DisplayPictureScreen({super.key, required this.imagePath1, required this.imagePath2});
+  const DisplayPictureScreen(
+      {Key? key, required this.imagePath1, required this.imagePath2})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Display the Picture')),
-      // The image is stored as a file on the device. Use the `Image.file`
-      // constructor with the given path to display the image.
       body: Center(
         child: FutureBuilder<Data>(
-            // future: postimage(imagePath, imagePath),
-            future: postimage(imagePath1, imagePath2),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                if (snapshot.hasData) {
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Image.file(File(imagePath1)),
-                      Image.file(File(imagePath2)),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(snapshot.data!.score),
-                    ],
-                  );
-                } else if (snapshot.hasError) {
-                  return Text('${snapshot.error}');
-                }
+          future: postimage(imagePath1, imagePath2),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Image.file(
+                          File(imagePath1),
+                          width: 150,
+                          height: 150,
+                        ),
+                        SizedBox(width: 20),
+                        Image.file(File(imagePath2), width: 150, height: 150),
+                      ],
+                    ),
+                    SizedBox(height: 100),
+                    Text(
+                      snapshot.data!.score,
+                      style: TextStyle(
+                          fontSize: 24,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 150),
+                    // TextButton(
+                    //   onPressed: () {
+                    //     Navigator.pop(
+                    //         context); // Navigate back to the previous screen (home screen)
+                    //   },
+                    //   child: Text('Go Back'),
+                    // ),
+                  ],
+                );
+              } else if (snapshot.hasError) {
+                return Text('${snapshot.error}');
               }
-              return const CircularProgressIndicator();
-            }),
+            }
+            return const CircularProgressIndicator();
+          },
+        ),
       ),
     );
   }
@@ -97,8 +117,5 @@ class Data {
     required this.score,
   });
   factory Data.fromJson(Map<String, dynamic> json) =>
-      Data(
-        success: json['success'], 
-        score: json['score'].toString()
-        );
+      Data(success: json['success'], score: json['score'].toString());
 }

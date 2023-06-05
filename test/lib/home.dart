@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:test/face_detector.services.dart';
-// import 'package:test/ml_services.dart';
 import 'package:test/camera.services.dart';
 import 'package:test/locator.dart';
 import 'package:test/sign-up.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key}) : super(key: key);
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  // MLService _mlService = locator<MLService>();
   FaceDetectorService _mlKitService = locator<FaceDetectorService>();
   CameraService _cameraService = locator<CameraService>();
   bool loading = false;
@@ -26,9 +25,14 @@ class _MyHomePageState extends State<MyHomePage> {
   _initializeServices() async {
     setState(() => loading = true);
     await _cameraService.initialize();
-    // await _mlService.initialize();
     _mlKitService.initialize();
     setState(() => loading = false);
+  }
+
+  @override
+  void dispose() {
+    _cameraService.dispose();
+    super.dispose();
   }
 
   @override
@@ -60,7 +64,6 @@ class _MyHomePageState extends State<MyHomePage> {
                           ],
                         ),
                       ),
-                      
                       Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: Column(
@@ -95,7 +98,10 @@ class _MyHomePageState extends State<MyHomePage> {
                                   children: [
                                     Text(
                                       'Start',
-                                      style: TextStyle(color: Colors.white,fontSize: 18),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 18,
+                                      ),
                                     ),
                                   ],
                                 ),

@@ -32,7 +32,7 @@ class DisplayPictureScreen extends StatelessWidget {
                       Image.file(File(imagePath1)),
                       Image.file(File(imagePath2)),
                       SizedBox(
-                        height: 50,
+                        height: 5,
                       ),
                       Text(snapshot.data!.score),
                     ],

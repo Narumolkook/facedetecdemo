@@ -100,7 +100,7 @@ class CardcamState extends State<Cardcam> {
             // Pass the automatically generated path to
             // the DisplayPictureScreen widget.
             imagePath1: croppedImage2.path,
-            imagePath2: imagePath!
+            imagePath2: widget.imagePath
           ),
         ),
       );

@@ -73,22 +73,18 @@ class SignUpState extends State<SignUp> {
       return false;
     } else {
       _saving = true;
-      // await _cameraService.cameraController?.stopImageStream();
-      // await Future.delayed(Duration(milliseconds: 200));
+     
       XFile? image = await _cameraService.takePicture();
-      // imagePath = file?.path;
-      // GallerySaver.saveImage(imagePath!);
+     
       var dir = Directory.systemTemp.createTempSync();
       File temp = File("${dir.path}/cropPath");
       final File croppedImage =
           await ImageProcessor.cropSquare(image!.path, temp.path, false)
               as File;
 
-      
       await Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => Cardcam(
-          // builder: (context) => DisplayPictureScreen(
             // Pass the automatically generated path to
             // the DisplayPictureScreen widget.
             imagePath: croppedImage.path,

@@ -43,81 +43,56 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: !loading
-          ? SingleChildScrollView(
-              child: SafeArea(
-                child: Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.8,
-                        child: Column(
-                          children: [
-                            Text(
-                              "Demo application",
-                              style: TextStyle(
-                                fontSize: 25,
-                              ),
-                              textAlign: TextAlign.center,
-                            ),
-                          ],
-                        ),
+      body: Center(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                "Demo application",
+                style: TextStyle(
+                  fontSize: 25,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              SizedBox(height: 150),
+              InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => SignUp(),
+                    ),
+                  );
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Color.fromARGB(255, 131, 12, 36),
+                    boxShadow: <BoxShadow>[
+                      BoxShadow(
+                        color: Colors.blue.withOpacity(0.1),
+                        blurRadius: 1,
+                        offset: Offset(0, 2),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          children: [
-                            InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (BuildContext context) => SignUp(),
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10),
-                                  color: Color.fromARGB(255, 131, 12, 36),
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                      color: Colors.blue.withOpacity(0.1),
-                                      blurRadius: 1,
-                                      offset: Offset(0, 2),
-                                    ),
-                                  ],
-                                ),
-                                alignment: Alignment.center,
-                                padding: EdgeInsets.symmetric(
-                                    vertical: 14, horizontal: 16),
-                                width: MediaQuery.of(context).size.width * 0.8,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Start',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 18,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
                     ],
+                  ),
+                  alignment: Alignment.center,
+                  padding: EdgeInsets.symmetric(vertical: 14, horizontal: 16),
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    'Start',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
                   ),
                 ),
               ),
-            )
-          : Center(
-              child: CircularProgressIndicator(),
-            ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

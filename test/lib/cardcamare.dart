@@ -75,23 +75,14 @@ class CardcamState extends State<Cardcam> {
       return false;
     } else {
       _saving = true;
-      // await _cameraService.cameraController?.stopImageStream();
-      // await Future.delayed(Duration(milliseconds: 200));
+     
       XFile? image = await _cameraService.takePicture();
-      // imagePath = file?.path;
-      // GallerySaver.saveImage(imagePath!);
+      
       var dir = Directory.systemTemp.createTempSync();
       File temp = File("${dir.path}/cropPath");
       final File croppedImage2 =
           await ImageProcessor.cropSquare(image!.path, temp.path, false)
               as File;
-
-
-      // var direc = Directory.systemTemp.createTempSync();
-      // File tempp = File("${direc.path}/cropPath");
-      // final File imagePath1=
-      //     await ImageProcessor.cropSquare(imagePath!, tempp.path, false)
-      //         as File;
 
       
       await Navigator.of(context).push(

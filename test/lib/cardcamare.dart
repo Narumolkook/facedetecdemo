@@ -95,8 +95,6 @@ class CardcamState extends State<Cardcam> {
           ),
         ),
       );
-      // GallerySaver.saveImage(imagePath!);
-      // GallerySaver.saveImage(imagePath.path).then((String path);
 
       setState(() {
         _bottomSheetVisible = true;
@@ -169,28 +167,6 @@ class CardcamState extends State<Cardcam> {
       );
     }
 
-    // if (!_initializing && pictureTaken) {
-    // body = Center(
-    //   child: Container(
-    //     width: 480,
-    //     height: 720,
-    //     child: Transform(
-    //         alignment: Alignment.center,
-    //         transform: Matrix4.rotationY(mirror),
-    //         child: FittedBox(
-    //           fit: BoxFit.cover,
-    //           child: Image.file(File(imagePath!)),
-    //         ),
-    //         ),
-    //   ),
-    // );
-    //   print(
-    //       "IMAGE PATH --------------------------------------------------------------------------------------------");
-    //   print(imagePath);
-    //   print(width);
-    //   print(height);
-    // }
-
     if (!_initializing && !pictureTaken) {
       body = Transform.scale(
         scale: 1.0,
@@ -219,9 +195,6 @@ class CardcamState extends State<Cardcam> {
           ),
         ),
       );
-      print(
-          "================================================================================================================================================");
-      print(imageSize);
     }
 
     return Scaffold(

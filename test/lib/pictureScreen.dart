@@ -47,13 +47,6 @@ class DisplayPictureScreen extends StatelessWidget {
                           fontWeight: FontWeight.bold),
                     ),
                     SizedBox(height: 150),
-                    // TextButton(
-                    //   onPressed: () {
-                    //     Navigator.pop(
-                    //         context); // Navigate back to the previous screen (home screen)
-                    //   },
-                    //   child: Text('Go Back'),
-                    // ),
                   ],
                 );
               } else if (snapshot.hasError) {
@@ -80,16 +73,10 @@ Future<Data> postimage(String path1, String path2) async {
     'ImageB', //ตัวแปรที่ api req
     path2, // path ภาพ
   );
-  print("---- fileA and fileB ----");
-  print(fileA);
-  print(fileB);
-
   //กำหนด url ของ api
   final uri = Uri.parse('http://58.137.58.164:8500/CompareFace');
   var request = http.MultipartRequest('POST', uri);
 
-  print("---- request ----");
-  print(request);
   request.files.add(fileA);
   request.files.add(fileB);
 
@@ -100,9 +87,7 @@ Future<Data> postimage(String path1, String path2) async {
 
   if (response.statusCode == 200) {
     print('Uploaded!');
-    // response.stream.transform(utf8.decoder).listen((value) {
-    //   debugPrint(value);
-    // });
+  
     return Data.fromJson(jsonDecode(responseString));
   } else {
     throw Exception('Failed to upload.');

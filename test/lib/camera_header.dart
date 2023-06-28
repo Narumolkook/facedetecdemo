@@ -10,21 +10,21 @@ class CameraHeader extends StatelessWidget {
     return Container(
       width: MediaQuery.of(context).size.width,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          InkWell(
-            onTap: onBackPressed,
-            child: Container(
-              margin: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              height: 50,
-              width: 50,
-              child: Center(child: Icon(Icons.arrow_back)),
-            ),
-          ),
+          // InkWell(
+          //   onTap: onBackPressed,
+          //   child: Container(
+          //     margin: EdgeInsets.all(20),
+          //     decoration: BoxDecoration(
+          //       color: Colors.white,
+          //       borderRadius: BorderRadius.circular(10),
+          //     ),
+          //     height: 50,
+          //     width: 50,
+          //     child: Center(child: Icon(Icons.arrow_back)),
+          //   ),
+          // ),
           Text(
             title,
             style: TextStyle(

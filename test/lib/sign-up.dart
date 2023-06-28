@@ -35,6 +35,8 @@ class SignUpState extends State<SignUp> {
   bool _saving = false;
   bool _bottomSheetVisible = false;
 
+  bool _isGreenBoxDetected = false;
+
   // service injection
   FaceDetectorService _faceDetectorService = locator<FaceDetectorService>();
   CameraService _cameraService = locator<CameraService>();
@@ -73,9 +75,9 @@ class SignUpState extends State<SignUp> {
       return false;
     } else {
       _saving = true;
-     
+
       XFile? image = await _cameraService.takePicture();
-     
+
       var dir = Directory.systemTemp.createTempSync();
       File temp = File("${dir.path}/cropPath");
       final File croppedImage =
@@ -91,8 +93,7 @@ class SignUpState extends State<SignUp> {
           ),
         ),
       );
-      // GallerySaver.saveImage(imagePath!);
-      // GallerySaver.saveImage(imagePath.path).then((String path);
+      
 
       setState(() {
         _bottomSheetVisible = true;
@@ -104,41 +105,50 @@ class SignUpState extends State<SignUp> {
   }
 
   _frameFaces() {
-    imageSize = _cameraService.getImageSize();
+  imageSize = _cameraService.getImageSize();
 
-    _cameraService.cameraController?.startImageStream((image) async {
-      if (_cameraService.cameraController != null) {
-        if (_detectingFaces) return;
+  _cameraService.cameraController?.startImageStream((image) async {
+    if (_cameraService.cameraController != null) {
+      if (_detectingFaces) return;
 
-        _detectingFaces = true;
+      _detectingFaces = true;
 
-        try {
-          await _faceDetectorService.detectFacesFromImage(image);
+      try {
+        await _faceDetectorService.detectFacesFromImage(image);
 
-          if (_faceDetectorService.faces.isNotEmpty) {
-            setState(() {
-              faceDetected = _faceDetectorService.faces[0];
-            });
-            // if (_saving) {
-            //   _mlService.setCurrentPrediction(image, faceDetected);
-            //   setState(() {
-            //     _saving = false;
-            //   });
-            // }
-          } else {
-            setState(() {
-              faceDetected = null;
-            });
+        if (_faceDetectorService.faces.isNotEmpty) {
+          setState(() {
+            faceDetected = _faceDetectorService.faces[0];
+            _isGreenBoxDetected = _isGreenBoxVisible(faceDetected);
+          });
+
+          if (_isGreenBoxDetected) {
+            await onShot();
           }
-
-          _detectingFaces = false;
-        } catch (e) {
-          print(e);
-          _detectingFaces = false;
+        } else {
+          setState(() {
+            faceDetected = null;
+            _isGreenBoxDetected = false;
+          });
         }
+
+        _detectingFaces = false;
+      } catch (e) {
+        print(e);
+        _detectingFaces = false;
       }
-    });
-  }
+    }
+  });
+}
+
+bool _isGreenBoxVisible(Face? face) {
+  if (face == null) return false;
+
+  double headEulerAngleY = face.headEulerAngleY ?? 0.0;
+
+  return (headEulerAngleY > -3 && headEulerAngleY < 3);
+}
+
 
   _onBackPressed() {
     Navigator.of(context).pop();
@@ -164,28 +174,6 @@ class SignUpState extends State<SignUp> {
         child: CircularProgressIndicator(),
       );
     }
-
-    // if (!_initializing && pictureTaken) {
-    // body = Center(
-    //   child: Container(
-    //     width: 480,
-    //     height: 720,
-    //     child: Transform(
-    //         alignment: Alignment.center,
-    //         transform: Matrix4.rotationY(mirror),
-    //         child: FittedBox(
-    //           fit: BoxFit.cover,
-    //           child: Image.file(File(imagePath!)),
-    //         ),
-    //         ),
-    //   ),
-    // );
-    //   print(
-    //       "IMAGE PATH --------------------------------------------------------------------------------------------");
-    //   print(imagePath);
-    //   print(width);
-    //   print(height);
-    // }
 
     if (!_initializing && !pictureTaken) {
       body = Transform.scale(
@@ -215,9 +203,6 @@ class SignUpState extends State<SignUp> {
           ),
         ),
       );
-      print(
-          "================================================================================================================================================");
-      print(imageSize);
     }
 
     return Scaffold(

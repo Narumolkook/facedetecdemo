@@ -30,12 +30,12 @@ class DisplayPictureScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Image.file(
-                          File(imagePath1),
+                          File(imagePath2),
                           width: 150,
                           height: 150,
                         ),
                         SizedBox(width: 20),
-                        Image.file(File(imagePath2), width: 150, height: 150),
+                        Image.file(File(imagePath1), width: 150, height: 150),
                       ],
                     ),
                     SizedBox(height: 100),
@@ -87,7 +87,7 @@ Future<Data> postimage(String path1, String path2) async {
 
   if (response.statusCode == 200) {
     print('Uploaded!');
-  
+
     return Data.fromJson(jsonDecode(responseString));
   } else {
     throw Exception('Failed to upload.');

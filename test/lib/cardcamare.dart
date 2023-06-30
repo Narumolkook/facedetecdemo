@@ -80,9 +80,8 @@ class CardcamState extends State<Cardcam> {
       
       var dir = Directory.systemTemp.createTempSync();
       File temp = File("${dir.path}/cropPath");
-      final File croppedImage2 =
-          await ImageProcessor.cropSquare(image!.path, temp.path, false)
-              as File;
+      final File croppedImage2 = await ImageProcessor.cropSquareWithCoordinates(
+          image!.path, temp.path, 100, 360, 110, 150, true);
 
       
       await Navigator.of(context).push(
@@ -225,27 +224,28 @@ class CardcamState extends State<Cardcam> {
 }
 
 class ImageProcessor {
-  static Future cropSquare(
-      String srcFilePath, String destFilePath, bool flip) async {
+  static Future<File> cropSquareWithCoordinates(
+    String srcFilePath,
+    String destFilePath,
+    int x,
+    int y,
+    int width,
+    int height,
+    bool flip,
+  ) async {
     var bytes = await File(srcFilePath).readAsBytes();
     IMG.Image src = IMG.decodeImage(bytes) as IMG.Image;
 
-    var cropSize = math.min(src.width, src.height);
-    print(cropSize);
-
-    int offsetX = (src.width - math.min(src.width, src.height)) ~/ 2;
-    int offsetY = (src.height - math.min(src.width, src.height)) ~/ 2;
-    print(offsetX);
-    print(offsetY);
-
-    IMG.Image destImage =
-        IMG.copyCrop(src, offsetX, offsetY, cropSize, cropSize);
+    IMG.Image destImage = IMG.copyCrop(src, x, y, width, height);
 
     if (flip) {
-      destImage = IMG.flipVertical(destImage);
+      destImage = IMG.flipHorizontal(destImage);
     }
 
     var jpg = IMG.encodeJpg(destImage);
-    return await File(destFilePath).writeAsBytes(jpg);
+    var file = File(destFilePath);
+    await file.writeAsBytes(jpg);
+
+    return file;
   }
 }

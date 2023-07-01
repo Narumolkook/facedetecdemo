@@ -29,10 +29,19 @@ The essential skills required for this project.
  * **Software** **:**
    
    * Ubuntu 20.04.5 LTS
-   * Flutter 3.3.0
+   * Flutter 3.3.0 Request Plugin
+      * tflite_flutter: ^0.9.0
+      * camera: ^0.10.0
+      * path: ^1.8.0
+      * google_ml_kit: ^0.5.0
+      * image: ^3.0.2
+      * get_it: ^7.2.0
+      * http: ^0.13.4
    * Dart version 2.18.0
    * Android Studio
+     
      [how to install Flutter Dart and Android Studio](https://www.dropbox.com/scl/fi/lw551vjm25fpakkktqrko/Dart-Flutter-and-Android-Studio.paper?rlkey=w2yr47pb7iwd9ozwggrjaafhc&dl=0)
+
 
 # Installation
 

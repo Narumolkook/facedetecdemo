@@ -13,7 +13,7 @@ This project is to develop an identity verification application in terms of face
 It is a document for various operations.
 
   * [document1](https://www.dropbox.com/scl/fi/34ghgfcg1c5zgfs0oiaoy/.paper?rlkey=0aazup670fa85y12yhn52u5aj&dl=0)
-  * [document2]([https://www.dropbox.com/scl/fi/34ghgfcg1c5zgfs0oiaoy/.paper?rlkey=0aazup670fa85y12yhn52u5aj&dl=0](https://www.dropbox.com/scl/fi/71uqkcr9mdogvmtz4v02m/kook.paper?dl=0&rlkey=5pcwwyf2me3mxp23fwnvqz5j4))
+  * [document2](https://www.dropbox.com/scl/fi/71uqkcr9mdogvmtz4v02m/kook.paper?rlkey=12ckk0g4lsnk4f15k7uhq5ycb&dl=0)
 
 # Skills
 

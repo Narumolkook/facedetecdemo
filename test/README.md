@@ -26,6 +26,8 @@ The essential skills required for this project.
 
  * **Hardware**
 
+   * Android version 13 
+
  * **Software**
 
 # Installation

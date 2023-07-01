@@ -12,6 +12,11 @@ This project is to develop an identity verification application in terms of face
 
 # Skills
 
+The essential skills required for this project.
+
+  * Dart
+  * Flutter
+
 # Component
 
 # Installation

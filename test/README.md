@@ -50,11 +50,28 @@ Install the `Face_and_ID_Card_Matching Project` with the following command.
 
 ### Step : 1
 
-Plaese clone this repository. 
+Plaese clone the repository. 
 
 ```
 git@github.com:Narumolkook/facedetecdemo.git
 ```
+
+### Step : 2
+
+After completing the repository clone, use the following command to navigate into the Folder Project.
+
+```
+cd project folder path
+```
+
+### Step : 3
+
+After that, use the command `code ..` to open VScode.
+
+```
+code ..
+```
+
 
 # Running Tests
 

@@ -30,13 +30,12 @@ The essential skills required for this project.
    
    * Ubuntu 20.04.5 LTS
    * Flutter 3.3.0 Request Plugin
-      * tflite_flutter: ^0.9.0
-      * camera: ^0.10.0
-      * path: ^1.8.0
-      * google_ml_kit: ^0.5.0
-      * image: ^3.0.2
-      * get_it: ^7.2.0
-      * http: ^0.13.4
+      * [tflite_flutter](https://pub.dev/packages/tflite_flutter) : ^0.9.0()
+      * [camera](https://pub.dev/packages/camera) : ^0.10.0
+      * [google_ml_kit](https://pub.dev/packages/google_ml_kit) : ^0.5.0
+      * [image](https://pub.dev/packages/image) : ^3.0.2
+      * [get_it](https://pub.dev/packages/get_it): ^7.2.0
+      * [http](https://pub.dev/packages/http) : ^0.13.4
    * Dart version 2.18.0
    * Android Studio
      

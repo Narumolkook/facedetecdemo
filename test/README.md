@@ -1,4 +1,4 @@
-# project II : Face verification though Artificial Intelligence Application
+# Face_and_ID_Card_Matching Project
 
 แอปพลิเคชั่นยืนยันตัวตนผ่านใบหน้าด้วยเทคโนโลยีปัญญาประดิษฐ์
 

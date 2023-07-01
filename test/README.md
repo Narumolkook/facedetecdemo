@@ -44,7 +44,23 @@ The essential skills required for this project.
      [how to install Flutter Dart and Android Studio](https://www.dropbox.com/scl/fi/lw551vjm25fpakkktqrko/Dart-Flutter-and-Android-Studio.paper?rlkey=w2yr47pb7iwd9ozwggrjaafhc&dl=0)
 
  * **Dev Tool**
-   * VScode or Visual Studio Code version 1.67.0 
+   * VScode or Visual Studio Code version 1.67.0
+  
+# basic flutter commands
+
+Command | Description
+..... | .....
+flutter build \<DIRECTORY\> | Flutter build commands.
+flutter clean | Delete the build/ and .dart_tool/ directories.
+flutter create \<DIRECTORY\> | Creates a new project.
+flutter devices -d \<DEVICE_ID\> | List all connected devices.
+flutter custom-devices list | Add, delete, list, and reset custom devices.
+flutter doctor | Show information about the installed tooling.
+flutter emulators | List, launch and create emulators.
+flutter install -d \<DEVICE_ID\> | Install a Flutter app on an attached device.
+flutter pub \<PUB_COMMAND\> | Works with packages. Use instead of dart pub.
+flutter run | Runs a Flutter program.
+flutter upgrade | Upgrade your copy of Flutter.
 
 # Installation
 

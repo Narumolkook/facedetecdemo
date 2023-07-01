@@ -82,11 +82,14 @@ flutter pub get
 
 # Running Tests
 
-To run tests, Run the following command.
+After the device is connected, execute the following command to run tests.
 
 ```
-code ..
+flutter run
 ```
+If the `flutter run` command is successful, you will see the following message below.
+
+![Screenshot from 2023-07-02 02-43-45](https://github.com/Narumolkook/facedetecdemo/assets/105279093/32dc14bf-aba1-4aff-9107-21e9cda6451e)
 
 # Support & Feedback
 

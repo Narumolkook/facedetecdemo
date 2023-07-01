@@ -72,8 +72,21 @@ After that, use the command `code ..` to open VScode.
 code ..
 ```
 
+### Step : 4
+
+Once VScode is opened, execute the following command in the terminal. to install the plugin
+
+```
+flutter pub get
+```
 
 # Running Tests
+
+To run tests, Run the following command.
+
+```
+code ..
+```
 
 # Support & Feedback
 

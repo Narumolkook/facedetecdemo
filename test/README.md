@@ -6,6 +6,8 @@
 
 This project is to develop an identity verification application in terms of face guideline that can automatically take a photo when the face matches the specified guideline to be compared with the image on the ID card through the VAMStack api that offers a comparison service. face Then pull the results out and show them on the screen.
 
+โครงการนี้เป็นการพัฒนาแอปพลิเคชันการยืนยันตัวตนในส่วนของการไกด์ไลน์ใบหน้าที่สามารถถ่ายภาพโดยอัตโนมัติเมื่อใบหน้าตรงกับไกด์ไลน์ที่กำหนดเพื่อนำมาเปรียบเทียบกับภาพบนบัตรประชาชนผ่าน VAMStack API ที่มีการให้บริการเปรียบเทียบใบหน้า จากนั้นดึงผลลัพธ์ออกมาแสดงบนหน้าจอ
+
 # Document
 
 It is a document for various operations.
@@ -92,6 +94,10 @@ If the `flutter run` command is successful, you will see the following message b
 ![Screenshot from 2023-07-02 02-43-45](https://github.com/Narumolkook/facedetecdemo/assets/105279093/32dc14bf-aba1-4aff-9107-21e9cda6451e)
 
 # Support & Feedback
+
+If there is a problem and need help or If you have any feedback, you can contact us at
+
+**san.narumol@gmail.com**
 
 # By
 

@@ -24,9 +24,9 @@ The essential skills required for this project.
 
 # Component
 
- ** Hardware **
+ **Hardware**
 
- ** Software **
+ **Software**
 
 # Installation
 

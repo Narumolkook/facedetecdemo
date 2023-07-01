@@ -24,11 +24,15 @@ The essential skills required for this project.
 
 # Component
 
- * **Hardware**
+ * **Hardware** **:**
 
    * Android version 13 
 
- * **Software**
+ * **Software** **:**
+   
+   * Ubuntu 20.04.5 LTS
+   * Flutter Request Plugin
+     * camera
 
 # Installation
 

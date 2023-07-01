@@ -49,7 +49,7 @@ The essential skills required for this project.
 # basic flutter commands
 
 Command | Description
-..... | .....
+----- | -----
 flutter build \<DIRECTORY\> | Flutter build commands.
 flutter clean | Delete the build/ and .dart_tool/ directories.
 flutter create \<DIRECTORY\> | Creates a new project.

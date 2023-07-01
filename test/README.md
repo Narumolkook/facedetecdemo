@@ -24,7 +24,7 @@ The essential skills required for this project.
 
  * **Hardware** **:**
 
-   * Android version 13 
+   * Smartphone Android version 13 
 
  * **Software** **:**
    
@@ -41,8 +41,12 @@ The essential skills required for this project.
      
      [how to install Flutter Dart and Android Studio](https://www.dropbox.com/scl/fi/lw551vjm25fpakkktqrko/Dart-Flutter-and-Android-Studio.paper?rlkey=w2yr47pb7iwd9ozwggrjaafhc&dl=0)
 
+ * **Dev Tool**
+   * VScode or Visual Studio Code version 1.67.0 
 
 # Installation
+
+Install the 'Face_and_ID_Card_Matching Project' with the following command.
 
 # Running Tests
 

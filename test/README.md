@@ -24,6 +24,8 @@ The essential skills required for this project.
 
 # Component
 
+## Hardware
+
 # Installation
 
 # Running Tests

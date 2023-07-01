@@ -8,6 +8,7 @@ This project is to develop an identity verification application in terms of face
 
 โครงการนี้เป็นการพัฒนาแอปพลิเคชันการยืนยันตัวตนในส่วนของการไกด์ไลน์ใบหน้าที่สามารถถ่ายภาพโดยอัตโนมัติเมื่อใบหน้าตรงกับไกด์ไลน์ที่กำหนดเพื่อนำมาเปรียบเทียบกับภาพบนบัตรประชาชนผ่าน VAMStack API ที่มีการให้บริการเปรียบเทียบใบหน้า จากนั้นดึงผลลัพธ์ออกมาแสดงบนหน้าจอ
 
+
 # Document
 
 It is a document for various operations.
@@ -15,12 +16,14 @@ It is a document for various operations.
   * [document1](https://www.dropbox.com/scl/fi/34ghgfcg1c5zgfs0oiaoy/.paper?rlkey=0aazup670fa85y12yhn52u5aj&dl=0)
   * [document2](https://www.dropbox.com/scl/fi/71uqkcr9mdogvmtz4v02m/kook.paper?rlkey=12ckk0g4lsnk4f15k7uhq5ycb&dl=0)
 
+
 # Skills
 
 The essential skills required for this project.
 
   * Dart
   * Flutter
+
 
 # Component
 
@@ -45,6 +48,7 @@ The essential skills required for this project.
 
  * **Dev Tool**
    * VScode or Visual Studio Code version 1.67.0
+
   
 # basic flutter commands
 
@@ -61,6 +65,7 @@ flutter install -d \<DEVICE_ID\> | Install a Flutter app on an attached device.
 flutter pub \<PUB_COMMAND\> | Works with packages. Use instead of dart pub.
 flutter run | Runs a Flutter program.
 flutter upgrade | Upgrade your copy of Flutter.
+
 
 # Installation
 
@@ -98,6 +103,7 @@ Once VScode is opened, execute the following command in the terminal. to install
 flutter pub get
 ```
 
+
 # Running Tests
 
 After the device is connected, execute the following command to run tests.
@@ -109,11 +115,13 @@ If the `flutter run` command is successful, you will see the following message b
 
 ![Screenshot from 2023-07-02 02-43-45](https://github.com/Narumolkook/facedetecdemo/assets/105279093/32dc14bf-aba1-4aff-9107-21e9cda6451e)
 
+
 # Support & Feedback
 
 If there is a problem and need help or If you have any feedback, you can contact us at
 
 **san.narumol@gmail.com**
+
 
 # By
 

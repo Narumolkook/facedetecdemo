@@ -46,7 +46,7 @@ The essential skills required for this project.
 
 # Installation
 
-Install the 'Face_and_ID_Card_Matching Project' with the following command.
+Install the `Face_and_ID_Card_Matching Project` with the following command.
 
 # Running Tests
 

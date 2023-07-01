@@ -6,7 +6,6 @@ import 'package:camera/camera.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:test/face_detector.services.dart';
-// import 'package:test/ml_services.dart';
 import 'package:test/camera.services.dart';
 import 'package:test/locator.dart';
 import 'package:test/camera_header.dart';
@@ -39,7 +38,7 @@ class CardcamState extends State<Cardcam> {
   // service injection
   FaceDetectorService _faceDetectorService = locator<FaceDetectorService>();
   CameraService _cameraService = locator<CameraService>();
-  // MLService _mlService = locator<MLService>();
+ 
 
   @override
   void initState() {
@@ -120,12 +119,7 @@ class CardcamState extends State<Cardcam> {
             setState(() {
               faceDetected = _faceDetectorService.faces[0];
             });
-            // if (_saving) {
-            //   _mlService.setCurrentPrediction(image, faceDetected);
-            //   setState(() {
-            //     _saving = false;
-            //   });
-            // }
+            
           } else {
             setState(() {
               faceDetected = null;

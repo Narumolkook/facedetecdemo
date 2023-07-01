@@ -7,7 +7,6 @@ import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:test/cardcamare.dart';
 import 'package:test/face_detector.services.dart';
-// import 'package:test/ml_services.dart';
 import 'package:test/camera.services.dart';
 import 'package:test/locator.dart';
 import 'package:test/camera_header.dart';
@@ -40,7 +39,7 @@ class SignUpState extends State<SignUp> {
   // service injection
   FaceDetectorService _faceDetectorService = locator<FaceDetectorService>();
   CameraService _cameraService = locator<CameraService>();
-  // MLService _mlService = locator<MLService>();
+  
 
   @override
   void initState() {
@@ -215,19 +214,6 @@ bool _isGreenBoxVisible(Face? face) {
           )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: onShot,
-        child: Icon(
-          Icons.camera,
-          color: Colors.white,
-          size: 29,
-        ),
-        backgroundColor: Colors.black,
-        tooltip: 'Capture Picture',
-        elevation: 5,
-        splashColor: Colors.grey,
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 }

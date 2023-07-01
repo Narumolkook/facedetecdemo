@@ -48,6 +48,14 @@ The essential skills required for this project.
 
 Install the `Face_and_ID_Card_Matching Project` with the following command.
 
+### Step : 1
+
+Plaese clone this repository. 
+
+```
+git@github.com:Narumolkook/facedetecdemo.git
+```
+
 # Running Tests
 
 # Support & Feedback

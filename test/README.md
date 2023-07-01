@@ -117,7 +117,7 @@ If the `flutter run` command is successful, you will see the following message b
 
 #### or
 
-กด `f5` ที่หน้า `main.dart` คุณจะเห็นข้อความด้านล่าง
+Press `f5` at the `main.dart` page you will see the following message below.
 
 ![Screenshot from 2023-07-02 03-16-05](https://github.com/Narumolkook/facedetecdemo/assets/105279093/c39fc24a-ea38-47cb-a07d-d1f70f7fc08b)
 

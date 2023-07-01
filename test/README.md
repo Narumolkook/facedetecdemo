@@ -1,6 +1,7 @@
 # Face_and_ID_Card_Matching Project
 
-แอปพลิเคชั่นยืนยันตัวตนผ่านใบหน้าด้วยเทคโนโลยีปัญญาประดิษฐ์
+\[ TH \] : แอปพลิเคชั่นยืนยันตัวตนผ่านใบหน้าด้วยเทคโนโลยีปัญญาประดิษฐ์
+\[ ENG \] : Face verification through Artificial Intelligence Application.
 
 # ภาพรวมทั้งหมดของโปรเจ็ค
 

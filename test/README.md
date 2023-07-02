@@ -115,6 +115,13 @@ If the `flutter run` command is successful, you will see the following message b
 
 ![Screenshot from 2023-07-02 02-43-45](https://github.com/Narumolkook/facedetecdemo/assets/105279093/32dc14bf-aba1-4aff-9107-21e9cda6451e)
 
+#### or
+
+Press `f5` at the `main.dart` page you will see the following message below.
+
+![Screenshot from 2023-07-02 03-16-05](https://github.com/Narumolkook/facedetecdemo/assets/105279093/c39fc24a-ea38-47cb-a07d-d1f70f7fc08b)
+
+
 
 # Support & Feedback
 

@@ -80,7 +80,7 @@ class CardcamState extends State<Cardcam> {
       var dir = Directory.systemTemp.createTempSync();
       File temp = File("${dir.path}/cropPath");
       final File croppedImage2 = await ImageProcessor.cropSquareWithCoordinates(
-          image!.path, temp.path, 100, 360, 110, 150, true);
+          image!.path, temp.path, 280, 360, 110, 150, true);
 
       
       await Navigator.of(context).push(

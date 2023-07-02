@@ -57,7 +57,7 @@ class DrawPaint extends CustomPainter {
     RRect rRect = RRect.fromLTRBR(63, 220, 320, 410, Radius.circular(10));
     canvas.drawRRect(rRect, paint);
      //draw img id card
-    RRect rrect = RRect.fromLTRBR(220, 300, 300, 390, Radius.circular(10));
+    RRect rrect = RRect.fromLTRBR(83, 300, 166, 390, Radius.circular(10));
     canvas.drawRRect(rrect, paint);
   }
 
